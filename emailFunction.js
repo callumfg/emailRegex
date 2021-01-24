@@ -1,12 +1,16 @@
+//Run 'npm i readline-sync' in command line before running to install 'readline-sync' package
+
 var fs = require('fs');
+var readline = require('readline-sync');
 
 let extraction = (extract) => {
 let file = fs.readFileSync(extract).toString();
 domainFunction(file)
 topTenDomains(file)
+userReq(file)
 }
 
-
+//Function that counts how many of each domain is used
 let domainFunction = (text) => {
     let dRegex = /@[\w-]*\.[\w\.]*/g;
     let emails = text.match(dRegex);
@@ -21,6 +25,7 @@ let domainFunction = (text) => {
     return domainCount
 };
 
+//Function that orders the top ten most used domains
 let topTenDomains = (text) => {
   let domains = domainFunction(text);
   let sortable = [];
@@ -42,5 +47,20 @@ let topTenDomains = (text) => {
   topTen.forEach(pos => console.log(`${topTen.indexOf(pos) + 1}. ${pos}`))
 };
 
+//Function that returns the amount of times a domain occours as requested by user
+let userReq = (text) => {
+    let domains = domainFunction(text)
+    let answer = {};
+    console.log('At least how many times should domains appear?');
+    let number = readline.prompt()
+    for(domain in domains){
+        if (domains[domain] >= number){
+            answer[domain] = domains[domain]
+        }   
+    }
+    for (result in answer){
+        console.log(`${result} ${answer[result]} times`)
+    };
+}
 
 extraction('test.txt');
