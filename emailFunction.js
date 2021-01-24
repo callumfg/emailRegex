@@ -23,7 +23,6 @@ let domainFunction = (text) => {
 
 let topTenDomains = (text) => {
   let domains = domainFunction(text);
-//   console.log(domains)
   let sortable = [];
   for (let domain in domains){sortable.push([domain, domains[domain]])};
   let topTen = [];
