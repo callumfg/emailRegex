@@ -47,7 +47,7 @@ let topTenDomains = (text) => {
   topTen.forEach(pos => console.log(`${topTen.indexOf(pos) + 1}. ${pos}`))
 };
 
-//Function that returns the minimum amount of times a domain should occur as requested by user
+//Function that returns domains based on the minimum amount of times the domains should occur as requested by user
 let userReq = (text) => {
     let domains = domainFunction(text)
     let answer = {};
